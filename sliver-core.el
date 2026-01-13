@@ -72,27 +72,6 @@
   (sliver--validate-metadata)
   )
 
-(defun sliver-declare-conflict-XXX (module conflict)
-  "Declare MODULE and CONFLICT as mutually exclusive."
-  (when (and (member module sliver--all-modules)
-	     (member conflict sliver--all-modules))
-    (cl-labels ((add (a b)
-		  (let ((lst (gethash a sliver--module-conflicts)))
-		    (unless (member b lst)
-		      (puthash a (cons b lst)
-			       sliver--module-conflicts)))))
-      (add module conflict)
-      (add conflict module))))
-
-(defun sliver-declare-dependency-XXX (module dependency)
-  "Declare the MODULE depends on DEPENDENCY."
-  (when (and (member module sliver--all-modules)
-	     (member dependency sliver--all-modules))
-    (let ((deps (gethash module sliver--module-dependencies)))
-      (unless (member dependency deps)
-	(puthash module (cons dependency deps)
-		 sliver--module-dependencies)))))
-
 (provide 'sliver-core)
 ;;; sliver-core.el ends here
 
