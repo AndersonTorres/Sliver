@@ -23,7 +23,7 @@
 
 (defun sliver-machine-os ()
   "Return the current OS type as a symbol.
-Possible values include: 'gnu/linux', 'darwin', 'windows-nt'."
+Possible values include: `gnu/linux`, `darwin`, `windows-nt`."
   system-type)
 
 (defun sliver-machine-window-system ()
@@ -58,11 +58,10 @@ Valid keys:
 Each entry has form:
    (PROFILE_NAME . CONDITIONS)
 
-Where CONDITIONS is a plist suitable for 'sliver-build-condition',
-excluding :profile itself.
+Where CONDITIONS is a plist suitable for
+`sliver-build-condition`, excluding :profile itself.
 
-Example:
-   '((\"Home-PC\" . (:hostname \"Jimmy\" :os gnu/linux))
+Example: '((\"Home-PC\" . (:hostname \"Jimmy\" :os gnu/linux))
      (\"Work-Laptop\" . (:os darwin)))"
   :type '(alist :key-type string :value-type plist)
   :group 'sliver-conditions)
@@ -106,8 +105,8 @@ If EXPECTED is a list, match if the fact equals any element."
 
 (defun sliver-condition-match-p (conditions &optional match)
   "Evaluate CONDITIONS using MATCH strategy.
-CONDITIONS is an alist of (KEY . VALUE).
-MATCH is either 'and (default) or 'or."
+CONDITIONS is an alist of (KEY . VALUE).  MATCH is either
+'and (default) or 'or."
   (let ((mode (or match 'and)))
     (pcase mode
       ('or
@@ -128,9 +127,10 @@ Recognized keywords:
    :os
    :window-system
    :profile
-   :match (symbol: 'and or 'or)
+   :match (symbol: \\='and or \\='or)
 
-If no conditions are supplied, the returned predicate always succeeds."
+If no conditions are supplied, the returned predicate always
+succeeds."
   (let* ((match (plist-get plist :match))
      (filtered (cl-loop for (k v) on plist by #'cddr
                 unless (eq k :match)

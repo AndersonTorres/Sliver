@@ -76,7 +76,8 @@
 ;;;###autoload
 (defun sliver-declare-conflict (module conflict)
   "Declare CONFLICT for MODULE by editing its metadata.
-Declares a bidirectional conflict (creates a matching entry in the CONFLICT module)."
+Declares a bidirectional conflict (creates a matching entry in
+the CONFLICT module)."
   (interactive
    (let ((mod (or (sliver--current-sliver)
           (completing-read "Sliver: " sliver--all-modules))))

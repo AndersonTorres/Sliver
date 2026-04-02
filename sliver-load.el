@@ -38,7 +38,7 @@
 (defun sliver--load-with-deps (module seen)
   "Load MODULE and its dependencies, tracking SEEN to detect cycles."
   (when (member module seen)
-    (error "Cyclic dependency involving %s module"))
+    (error (format "Cyclic dependency involving %s module" module)))
   (unless (member module sliver--loaded-modules)
     (let ((deps (gethash module sliver--module-dependencies)))
       (dolist (dep deps)
@@ -67,10 +67,10 @@
   "Load MODULE, prompting if not provided.
 Optionally gated by conditional keywords.
 
-When PLIST is empty, MODULE is loaded unconditionally.
-When PLIST contains condition keywords, MODULE is loaded only if the constructed
-predicate evaluates to non-nil.
-Recognized condition keywords are defined by 'sliver-build-condition'."
+When PLIST is empty, MODULE is loaded unconditionally.  When
+PLIST contains condition keywords, MODULE is loaded only if the
+constructed predicate evaluates to non-nil.  Recognized condition
+keywords are defined by `sliver-build-condition`."
   (interactive)
   (sliver-refresh)
   (unless module

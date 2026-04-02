@@ -137,7 +137,7 @@
     (sliver-module-table-refresh)))
 
 (defun sliver-open-module-at-point ()
-  "Run 'sliver-open-module' on module at point."
+  "Run `sliver-open-module` on module at point."
   (interactive)
   (when-let* ((module (tabulated-list-get-id)))
     (sliver-open-module module)))
